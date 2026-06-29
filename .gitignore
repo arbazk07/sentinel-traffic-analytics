@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+venv/
+.venv/
+.env
+.DS_Store
+
+# Uploaded videos at runtime shouldn't be committed (the bundled demo
+# video in data/uploads/real_objects_test.mp4 is intentionally kept).
+data/uploads/*
+!data/uploads/real_objects_test.mp4

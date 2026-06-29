@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentinel — Live Detection & Analytics</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <div class="brand-text">
+        <span class="logo">SENTINEL</span>
+        <span class="tagline">real-time detection &amp; foot-traffic analytics</span>
+      </div>
+    </div>
+    <div class="status-cluster">
+      <span class="status-chip" id="statusChip"><span class="status-dot"></span> idle</span>
+      <span class="fps-chip" id="fpsChip">-- fps</span>
+    </div>
+  </header>
+
+  <main class="console">
+
+    <!-- LEFT: source controls + video feed -->
+    <section class="feed-column">
+
+      <div class="source-bar">
+        <button class="source-btn" id="webcamBtn">Use Webcam</button>
+        <label class="source-btn upload-btn">
+          Upload Video
+          <input type="file" id="videoUpload" accept="video/*" hidden />
+        </label>
+        <button class="source-btn danger" id="stopBtn" disabled>Stop</button>
+      </div>
+
+      <div class="feed-frame" id="feedFrame">
+        <img id="videoFeed" class="video-feed" alt="Live detection feed" hidden />
+        <div class="feed-placeholder" id="feedPlaceholder">
+          <span class="placeholder-icon">◎</span>
+          <span>No active feed — choose a source above to begin</span>
+        </div>
+        <canvas id="zoneCanvas" class="zone-canvas" hidden></canvas>
+      </div>
+
+      <div class="zone-bar">
+        <button class="zone-btn" id="drawZoneBtn" disabled>Draw counting line</button>
+        <span class="zone-hint" id="zoneHint"></span>
+      </div>
+
+    </section>
+
+    <!-- RIGHT: live analytics panel -->
+    <aside class="stats-column">
+
+      <div class="stat-block">
+        <span class="stat-block-label">Unique visitors</span>
+        <span class="stat-block-value" id="uniqueVisitors">0</span>
+      </div>
+
+      <div class="stat-row-pair">
+        <div class="stat-block small">
+          <span class="stat-block-label">Currently in frame</span>
+          <span class="stat-block-value" id="currentlyInFrame">0</span>
+        </div>
+        <div class="stat-block small">
+          <span class="stat-block-label">Zone crossings</span>
+          <span class="stat-block-value" id="zoneCrossings">— / —</span>
+        </div>
+      </div>
+
+      <div class="leaderboard">
+        <span class="leaderboard-title">Longest dwell time</span>
+        <div class="leaderboard-list" id="leaderboardList">
+          <p class="leaderboard-empty">No tracked objects yet</p>
+        </div>
+      </div>
+
+      <div class="legend">
+        <span class="legend-title">Reading the feed</span>
+        <ul class="legend-list">
+          <li><span class="legend-swatch box"></span> Box + ID = a tracked object</li>
+          <li><span class="legend-swatch trail"></span> Fading trail = recent movement</li>
+          <li><span class="legend-swatch line"></span> White line = counting zone</li>
+        </ul>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <footer class="footer">
+    Sentinel — YOLO11 detection + ByteTrack identity tracking, with dwell-time and zone-crossing analytics computed from tracked identities, not raw per-frame detections
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
