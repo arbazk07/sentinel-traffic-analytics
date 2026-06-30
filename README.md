@@ -1,4 +1,4 @@
-# Sentinel — Real-Time Foot Traffic & Dwell Analytics
+# Sentinel - Real-Time Foot Traffic & Dwell Analytics
 
 A live object detection and tracking system that goes beyond drawing
 boxes: it turns tracked identities into real foot-traffic analytics —
